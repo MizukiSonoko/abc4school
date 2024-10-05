@@ -8,12 +8,20 @@ import { Discomfort, Video } from './client';
 import { Card } from '@/components/ui/card';
 import { useSearchParams } from 'next/navigation';
 import { useTransition, animated } from '@react-spring/web';
+import { Dialog, DialogOverlay, DialogContent } from "@reach/dialog"
+import "@reach/dialog/styles.css"
 
 const CustomVideoPlayer: React.FC = () => {
   const searchParams = useSearchParams();
 
   const class_token = searchParams.get('class_token') || '00';
   const sender = supabase.channel(class_token)
+
+  const [isQRCodeVisible, setIsQRCodeVisible] = useState(false);  // QRコードの表示状態を管理
+
+  const toggleQRCode = () => {
+    setIsQRCodeVisible(!isQRCodeVisible);  // QRコードの表示状態を切り替え
+  };
 
   const videoRef = useRef<HTMLVideoElement>(null);  // videoタグへの参照
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -380,7 +388,10 @@ const CustomVideoPlayer: React.FC = () => {
 
         {/* Current Time */}
         <div className="text-center text-sm mt-2 text-gray-600">
-          現在の再生時間: {currentTime}
+          <p className="px-2 inline">現在の再生時間: {currentTime}</p>
+          <Button onClick={toggleQRCode} className="mt-4">
+            {isQRCodeVisible ? "QRコードを非表示" : "QRコードを表示"}
+          </Button>
         </div>
 
         {/* Video Carousel */}
@@ -460,6 +471,29 @@ const CustomVideoPlayer: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* モーダル表示 */}
+      {isQRCodeVisible && (
+          <Dialog isOpen={isQRCodeVisible} onDismiss={() => setIsQRCodeVisible(false)}>
+            <DialogOverlay>
+              <DialogContent className="bg-white rounded p-8 z-50">
+                <div className="mt-4">
+                  <img
+                    src='/qr.png'
+                    alt={'qr'}
+                    className="w-128 h-128 object-cover rounded-md"
+                  />
+                </div>
+                <button
+                  onClick={() => setIsQRCodeVisible(false)}
+                  className="mt-4 px-4 py-2 bg-green-500 text-white rounded"
+                >
+                  閉じる
+                </button>
+              </DialogContent>
+            </DialogOverlay>
+          </Dialog>
+        )}
     </div>
   );
 };
