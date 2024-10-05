@@ -70,7 +70,6 @@ export default function CenteredCircleButtonPage() {
         <button 
           className="bg-red-500 text-white w-64 h-64 rounded-full text-6xl font-bold shadow-lg hover:bg-red-600 transition duration-300 ease-in-out"
           onClick={handleAddDiscomfort}
-          onTouchStart={handleAddDiscomfort}
         >
           まてぃ！
         </button>
