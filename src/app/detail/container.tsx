@@ -49,7 +49,8 @@ export default function LinkedInStyleUI() {
     datasets: [
       {
         label: '違和感データ',
-        data: name === "みずき" ? [discomforts.length, 1, 0, 2, 5]: [discomforts.length, 0, 2, 12, 1],
+        data: name === "みずき" ? 
+          [discomforts.length, 1, 0, 2, discomforts.length/2]: [discomforts.length, 0, 2, discomforts.length * 3, 1],
         backgroundColor: 'rgba(34, 202, 236, 0.2)', // 塗りつぶし色
         borderColor: 'rgba(34, 202, 236, 1)', // 枠線色
         borderWidth: 2, // 枠線の太さ
