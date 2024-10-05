@@ -46,6 +46,7 @@ export default function CenteredCircleButtonPage() {
     const resp = await supabase.from('pupils').select('id').eq('name', name)
     localStorage.setItem('id', resp.data![0].id);
     setIsModalOpen(false);
+    window.location.reload();
   };
 
   const handleAddDiscomfort = async () => {
