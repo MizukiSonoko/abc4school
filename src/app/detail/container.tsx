@@ -41,12 +41,15 @@ export default function LinkedInStyleUI() {
     downloadDiscomforts();
   }, [])
   
+  if(name === "みずき") {
+    
+  }
   const data = {
     labels: ['自然', '社会', '人', '音楽', '本'], // 5つの項目
     datasets: [
       {
         label: '違和感データ',
-        data: [65, 59, 90, 81, 56], // 各項目のデータ
+        data: name === "みずき" ? [discomforts.length, 1, 0, 2, 5]: [discomforts.length, 0, 2, 12, 1],
         backgroundColor: 'rgba(34, 202, 236, 0.2)', // 塗りつぶし色
         borderColor: 'rgba(34, 202, 236, 1)', // 枠線色
         borderWidth: 2, // 枠線の太さ
@@ -70,7 +73,7 @@ export default function LinkedInStyleUI() {
           display: true,
         },
         suggestedMin: 0,  // 最小値を設定
-        suggestedMax: 100,  // 最大値を設定
+        suggestedMax: 30,  // 最大値を設定
       },
     },
   };
