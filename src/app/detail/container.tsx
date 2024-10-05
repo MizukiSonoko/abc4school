@@ -105,7 +105,7 @@ export default function LinkedInStyleUI() {
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-medium">{discomfort.time}</span>
                   <span className="text-base">{discomfort.pupilsName}</span>
-                  <span className="text-base">Video:{discomfort.videoId}</span>
+                  <span className="text-base">Video:{discomfort.videoId}(自然)</span>
                 </div>
               </Card>
             </animated.div>
