@@ -6,13 +6,14 @@ import { Play, Pause, Volume2, VolumeX, ChevronLeft, ChevronRight, Maximize, Min
 import { supabase } from '@/lib/supabase';
 import { Discomfort, Video } from './client';
 import { Card } from '@/components/ui/card';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTransition, animated } from '@react-spring/web';
 import { Dialog, DialogOverlay, DialogContent } from "@reach/dialog"
 import "@reach/dialog/styles.css"
 
 const CustomVideoPlayer: React.FC = () => {
   const searchParams = useSearchParams();
+  const router = useRouter()
 
   const class_token = searchParams.get('class_token') || '00';
   const sender = supabase.channel(class_token)
@@ -441,6 +442,7 @@ const CustomVideoPlayer: React.FC = () => {
               <div
                 key={p}
                 className="flex-shrink-0 cursor-pointer"
+                onClick={() => router.push(`/detail?name=`+p)}
               >
                 <p className="mt-1 text-sm text-center">{p}</p>
               </div>
